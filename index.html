@@ -20,10 +20,10 @@
       theme: {
         extend: {
           colors: {
-            primary: '#b0c4de', // ご指定のベースカラー (Light Steel Blue)
+            primary: '#b0c4de', // Light Steel Blue
             primaryDark: '#8ba4c9',
-            textMain: '#1e293b', // より引き締まるスレートカラー
-            textLight: '#64748b',
+            textMain: '#1e293b', 
+            textLight: '#475569',
           },
           fontFamily: {
             sans: ['"Noto Sans JP"', 'sans-serif'],
@@ -33,20 +33,17 @@
     }
   </script>
 
-  <!-- Custom CSS (Animation & Effects) -->
+  <!-- Custom CSS -->
   <style>
-    /* =========================================
-       1. 常に動く背景 (Animated Air Flow Background)
-       心地よい空気の流れを表現するグラデーションアニメーション
-    ========================================= */
+    /* 背景アニメーション */
     .bg-animated {
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
-      z-index: -1;
-      background: linear-gradient(-45deg, #ffffff, #f1f5f9, #b0c4de, #e2e8f0);
+      z-index: -2;
+      background: linear-gradient(-45deg, #ffffff, #f8fafc, #b0c4de, #e2e8f0);
       background-size: 400% 400%;
       animation: gradientMove 15s ease infinite;
     }
@@ -56,51 +53,33 @@
       100% { background-position: 0% 50%; }
     }
 
-    /* セクションの半透明背景 (グラスモーフィズム) */
-    .glass-section {
-      background: rgba(255, 255, 255, 0.65);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-    }
-
-    /* =========================================
-       2. スクロール連動アニメーションクラス
-    ========================================= */
-    /* 共通の初期状態 */
+    /* スクロールアニメーション共通 */
     .animate-on-scroll {
       opacity: 0;
       will-change: transform, opacity;
     }
-
-    /* 文字などが下から浮き上がるエフェクト */
     .fade-up {
       transform: translateY(40px);
       transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1), transform 1s cubic-bezier(0.25, 1, 0.5, 1);
     }
-
-    /* 左からシュッとスライドイン */
     .slide-left {
       transform: translateX(-100px);
       transition: opacity 1.2s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
-
-    /* 右からシュッとスライドイン */
     .slide-right {
       transform: translateX(100px);
       transition: opacity 1.2s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
-
-    /* JSで付与される表示クラス */
     .animate-on-scroll.is-visible {
       opacity: 1;
       transform: translate(0, 0);
     }
 
-    /* 画像にオーバーレイをかけて文字を読みやすくする */
+    /* 画像オーバーレイ */
     .img-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to right, rgba(0,0,0,0.4), transparent);
+      background: linear-gradient(to right, rgba(15,23,42,0.6), rgba(15,23,42,0.2));
     }
   </style>
 </head>
@@ -110,15 +89,15 @@
   <div class="bg-animated"></div>
 
   <!-- ==============================================
-       Header (全ページ共通)
+       Header
   =============================================== -->
-  <header class="fixed top-0 left-0 w-full z-50 bg-white/70 backdrop-blur-md border-b border-white/50 transition-all duration-300" id="global-header">
+  <header class="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-white/50 transition-all duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-      <a href="index.html" class="flex items-center gap-2">
-        <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-lg">J</div>
+      <a href="index.html" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-md group-hover:bg-primaryDark transition-colors">J</div>
         <div>
-          <h1 class="text-lg font-bold leading-tight">城西エアコン株式会社</h1>
-          <p class="text-[10px] text-textLight">輸入空調機のプロフェッショナル</p>
+          <h1 class="text-lg font-bold leading-tight tracking-wide">城西エアコン株式会社</h1>
+          <p class="text-[10px] text-textLight tracking-widest">輸入空調機のプロフェッショナル</p>
         </div>
       </a>
       <nav class="hidden md:flex gap-8 items-center text-sm font-medium">
@@ -128,7 +107,7 @@
         <a href="#products" class="hover:text-primary transition-colors">製品情報</a>
         <a href="#contact" class="bg-primary text-white px-6 py-2.5 rounded-full hover:bg-primaryDark transition-all shadow-md hover:shadow-lg">お問い合わせ</a>
       </nav>
-      <button class="md:hidden text-gray-600 focus:outline-none" id="mobile-menu-btn">
+      <button class="md:hidden text-gray-600 focus:outline-none">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
       </button>
     </div>
@@ -137,139 +116,135 @@
   <main class="pt-20">
     
     <!-- ==============================================
-       Hero Section (文字が浮き上がる)
+       Hero Section (指定画像＋グラデーションマスク)
     =============================================== -->
-    <section class="relative w-full min-h-[80vh] flex items-center glass-section border-b border-white/50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-20">
-        <div class="max-w-3xl">
+    <section class="relative w-full h-[85vh] flex items-center overflow-hidden">
+      <!-- ヒーロー背景画像 -->
+      <div class="absolute inset-0 z-0">
+        <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=2000" alt="空調機イメージ" class="w-full h-full object-cover object-center transform scale-105 animate-[pulse_20s_ease-in-out_infinite_alternate]">
+        <!-- テキストを読ませるための白グラデーションオーバーレイ -->
+        <div class="absolute inset-0 bg-gradient-to-r from-white/95 via-white/70 to-transparent"></div>
+      </div>
+
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div class="max-w-2xl">
           <p class="animate-on-scroll fade-up text-primary font-bold tracking-[0.2em] text-sm mb-6">TOKYO / IMPORT AIR CONDITIONER</p>
-          <h2 class="animate-on-scroll fade-up text-5xl md:text-6xl font-bold leading-tight mb-8" style="transition-delay: 150ms;">
+          <h2 class="animate-on-scroll fade-up text-5xl md:text-6xl font-bold leading-tight mb-8 text-slate-800" style="transition-delay: 150ms;">
             空間を満たすのは、<br>
             確かな技術と<br>
             <span class="text-primary">上質な空気。</span>
           </h2>
-          <p class="animate-on-scroll fade-up text-lg text-gray-700 leading-relaxed mb-10" style="transition-delay: 300ms;">
+          <p class="animate-on-scroll fade-up text-lg text-slate-600 leading-relaxed mb-10 font-medium" style="transition-delay: 300ms;">
             旧GE社・GAC社製空調機の取扱実績を持つ、輸入空調の専門会社。<br class="hidden md:block">
             東京近郊を中心に、販売から施工、保守メンテナンスまで、<br class="hidden md:block">一貫したサポートをお約束します。
           </p>
           <div class="animate-on-scroll fade-up flex flex-col sm:flex-row gap-4" style="transition-delay: 450ms;">
             <a href="#services" class="bg-primary text-white text-center px-10 py-4 rounded-full font-medium hover:bg-primaryDark transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-1 duration-300">業務内容を見る</a>
-            <a href="#contact" class="bg-white/80 backdrop-blur text-primary border border-primary text-center px-10 py-4 rounded-full font-medium hover:bg-white transition-colors shadow-sm transform hover:-translate-y-1 duration-300">カタログを請求する</a>
+            <a href="#contact" class="bg-white text-primary border border-primary text-center px-10 py-4 rounded-full font-medium hover:bg-slate-50 transition-colors shadow-sm transform hover:-translate-y-1 duration-300">カタログ請求</a>
           </div>
         </div>
       </div>
     </section>
 
     <!-- ==============================================
-       Services Section (全幅・横からのスライドイン)
+       Services Section (全幅スライドイン - そのまま)
     =============================================== -->
     <section id="services" class="py-24 overflow-hidden">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
-        <div class="text-center animate-on-scroll fade-up">
-          <p class="text-primary font-bold text-sm tracking-[0.2em] mb-2">SERVICES</p>
-          <h2 class="text-3xl md:text-4xl font-bold">弊社業務内容</h2>
-        </div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 text-center animate-on-scroll fade-up">
+        <p class="text-primary font-bold text-sm tracking-[0.2em] mb-2">SERVICES</p>
+        <h2 class="text-3xl md:text-4xl font-bold text-slate-800">弊社業務内容</h2>
       </div>
 
       <div class="w-full flex flex-col gap-0">
-        
-        <!-- Service 1: Image Left, Text Right -->
-        <div class="flex flex-col md:flex-row w-full bg-white/40 backdrop-blur-sm group hover:bg-white/60 transition-colors duration-500">
+        <!-- Service 1 -->
+        <div class="flex flex-col md:flex-row w-full bg-white/60 backdrop-blur-sm hover:bg-white/80 transition-colors duration-500">
           <div class="w-full md:w-1/2 h-80 md:h-[500px] relative animate-on-scroll slide-left">
             <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=80&w=1600" alt="輸入・販売" class="w-full h-full object-cover">
             <div class="img-overlay"></div>
           </div>
           <div class="w-full md:w-1/2 p-10 md:p-20 flex flex-col justify-center animate-on-scroll slide-right">
-            <div class="text-primary mb-4">
-              <span class="text-5xl font-light opacity-50">01</span>
-            </div>
-            <h3 class="text-2xl md:text-3xl font-bold mb-6">輸入・販売</h3>
-            <p class="text-textLight leading-loose">
-              旧GE社、GAC社製空調機をはじめとする輸入空調機器の取扱ノウハウを活かし、お客様の施設や住宅環境に最適な製品をご提案します。カタログにない適応機種の選定や、最新の省エネ機器の導入に関するコンサルティングもお任せください。
-            </p>
+            <div class="text-primary mb-4"><span class="text-5xl font-light opacity-50">01</span></div>
+            <h3 class="text-2xl md:text-3xl font-bold mb-6 text-slate-800">輸入・販売</h3>
+            <p class="text-textLight leading-loose">旧GE社、GAC社製空調機をはじめとする輸入空調機器の取扱ノウハウを活かし、お客様の施設や住宅環境に最適な製品をご提案します。カタログにない適応機種の選定や、最新の省エネ機器の導入コンサルティングもお任せください。</p>
           </div>
         </div>
-
-        <!-- Service 2: Text Left, Image Right (交差レイアウト) -->
-        <div class="flex flex-col md:flex-row-reverse w-full bg-white/50 backdrop-blur-sm group hover:bg-white/70 transition-colors duration-500">
+        <!-- Service 2 -->
+        <div class="flex flex-col md:flex-row-reverse w-full bg-white/70 backdrop-blur-sm hover:bg-white/90 transition-colors duration-500">
           <div class="w-full md:w-1/2 h-80 md:h-[500px] relative animate-on-scroll slide-right">
             <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&q=80&w=1600" alt="施工・入替" class="w-full h-full object-cover">
             <div class="img-overlay"></div>
           </div>
           <div class="w-full md:w-1/2 p-10 md:p-20 flex flex-col justify-center animate-on-scroll slide-left">
-            <div class="text-primary mb-4">
-              <span class="text-5xl font-light opacity-50">02</span>
-            </div>
-            <h3 class="text-2xl md:text-3xl font-bold mb-6">施工・入替</h3>
-            <p class="text-textLight leading-loose">
-              一般住宅からオフィスビル、商業施設まで、現地の状況を正確に把握し、安全かつ確実な施工を実施します。古い機器（ウォールスルーエアコン等）からの配管・ダクトを活かしたスムーズな入替工事の実績も多数ございます。
-            </p>
+            <div class="text-primary mb-4"><span class="text-5xl font-light opacity-50">02</span></div>
+            <h3 class="text-2xl md:text-3xl font-bold mb-6 text-slate-800">施工・入替</h3>
+            <p class="text-textLight leading-loose">一般住宅からオフィスビルまで、現地の状況を正確に把握し、確実な施工を実施します。古い機器（ウォールスルーエアコン等）からの配管・ダクトを活かしたスムーズな入替工事の実績も多数ございます。</p>
           </div>
         </div>
-
-        <!-- Service 3: Image Left, Text Right -->
-        <div class="flex flex-col md:flex-row w-full bg-white/40 backdrop-blur-sm group hover:bg-white/60 transition-colors duration-500">
+        <!-- Service 3 -->
+        <div class="flex flex-col md:flex-row w-full bg-white/60 backdrop-blur-sm hover:bg-white/80 transition-colors duration-500">
           <div class="w-full md:w-1/2 h-80 md:h-[500px] relative animate-on-scroll slide-left">
-            <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=1600" alt="保守・修理・点検" class="w-full h-full object-cover">
+            <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&q=80&w=1600" alt="保守・修理・点検" class="w-full h-full object-cover">
             <div class="img-overlay"></div>
           </div>
           <div class="w-full md:w-1/2 p-10 md:p-20 flex flex-col justify-center animate-on-scroll slide-right">
-            <div class="text-primary mb-4">
-              <span class="text-5xl font-light opacity-50">03</span>
-            </div>
-            <h3 class="text-2xl md:text-3xl font-bold mb-6">保守・修理・点検</h3>
-            <p class="text-textLight leading-loose">
-              空調機器を長期にわたって安全・快適にご使用いただくためには、プロフェッショナルによる定期的なメンテナンスが不可欠です。万が一の故障時のトラブルシューティングや迅速な修理対応で、お客様のビジネスと生活を守ります。
-            </p>
+            <div class="text-primary mb-4"><span class="text-5xl font-light opacity-50">03</span></div>
+            <h3 class="text-2xl md:text-3xl font-bold mb-6 text-slate-800">保守・修理・点検</h3>
+            <p class="text-textLight leading-loose">空調機器を安全・快適にご使用いただくためには、プロによる定期的なメンテナンスが不可欠です。万が一の故障時のトラブルシューティングや迅速な修理対応で、お客様のビジネスと生活を守ります。</p>
           </div>
         </div>
-
       </div>
     </section>
 
     <!-- ==============================================
-       Strengths Section (当社の強み・新規追加)
+       Strengths Section (Bento UI レイアウト)
     =============================================== -->
-    <section class="py-24 glass-section border-y border-white/50">
+    <section class="py-24 relative">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center animate-on-scroll fade-up mb-16">
+        <div class="text-center animate-on-scroll fade-up mb-12">
           <p class="text-primary font-bold text-sm tracking-[0.2em] mb-2">OUR STRENGTHS</p>
-          <h2 class="text-3xl md:text-4xl font-bold">城西エアコンが選ばれる理由</h2>
+          <h2 class="text-3xl md:text-4xl font-bold text-slate-800">城西エアコンが選ばれる理由</h2>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Bento Grid (CSS Gridを利用した非対称なモダンレイアウト) -->
+        <div class="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-6 h-auto md:h-[500px]">
           
-          <!-- Strength 1 -->
-          <div class="bg-white/80 p-10 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(176,196,222,0.3)] transition-all duration-300 animate-on-scroll fade-up transform hover:-translate-y-2">
-            <div class="w-16 h-16 bg-primary/10 text-primary rounded-2xl flex items-center justify-center mb-6">
-              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          <!-- Box 1: 大きなメイン訴求（画像背景） -->
+          <div class="md:col-span-2 md:row-span-2 relative rounded-3xl overflow-hidden group animate-on-scroll fade-up shadow-lg">
+            <img src="https://images.unsplash.com/photo-1542013936693-884638332954?auto=format&fit=crop&q=80&w=1600" alt="専門知識" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+            <!-- テキストを読ませるための下部グラデーション -->
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent"></div>
+            <div class="absolute bottom-0 left-0 p-8 md:p-12 w-full">
+              <span class="inline-block px-3 py-1 bg-primary text-white text-xs font-bold rounded-full mb-4">01</span>
+              <h3 class="text-2xl md:text-3xl font-bold text-white mb-3">圧倒的な輸入空調の専門知識</h3>
+              <p class="text-slate-200 text-sm md:text-base leading-relaxed max-w-lg">
+                2006年より(株)デンソーエース様から輸入空調商品の移管を受け、旧GE社やGAC社等の製品に特化。他社では対応が難しい図面解析や部品調達も的確に対応可能です。
+              </p>
             </div>
-            <h3 class="text-xl font-bold mb-4">圧倒的な輸入空調の専門知識</h3>
+          </div>
+
+          <!-- Box 2: ワンストップ（アイコン＋テキスト） -->
+          <div class="bg-white/80 backdrop-blur-md rounded-3xl p-8 flex flex-col justify-center animate-on-scroll fade-up shadow-lg border border-white/50" style="transition-delay: 150ms;">
+            <div class="w-12 h-12 bg-primary/10 text-primary rounded-xl flex items-center justify-center mb-5">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+            </div>
+            <span class="text-primary font-bold text-xs mb-2">02</span>
+            <h3 class="text-xl font-bold text-slate-800 mb-3">販売から保守まで<br>ワンストップ対応</h3>
             <p class="text-sm text-textLight leading-relaxed">
-              2006年より(株)デンソーエース様から輸入空調商品の移管を受け、旧GE社やGAC社等の製品に特化。他社では対応が難しい輸入機器の図面解析や部品調達も、当社なら的確に対応可能です。
+              現地調査、美観を損ねない丁寧な施工、定期保守まで、一社完結でお客様の負担を最小限に抑えます。
             </p>
           </div>
 
-          <!-- Strength 2 -->
-          <div class="bg-white/80 p-10 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(176,196,222,0.3)] transition-all duration-300 animate-on-scroll fade-up transform hover:-translate-y-2" style="transition-delay: 150ms;">
-            <div class="w-16 h-16 bg-primary/10 text-primary rounded-2xl flex items-center justify-center mb-6">
-              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+          <!-- Box 3: 迅速対応（色反転アクセント） -->
+          <div class="bg-primary text-white rounded-3xl p-8 flex flex-col justify-center relative overflow-hidden animate-on-scroll fade-up shadow-lg" style="transition-delay: 300ms;">
+            <!-- 背景の装飾図形 -->
+            <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
+            <div class="relative z-10">
+              <span class="text-white/70 font-bold text-xs mb-2 block">03</span>
+              <h3 class="text-xl font-bold mb-3">東京近郊エリアでの<br>迅速なフットワーク</h3>
+              <p class="text-sm text-white/90 leading-relaxed">
+                東京近郊にエリアを絞ることで、急な故障や点検依頼に対しても迅速に駆けつける体制を整えています。
+              </p>
             </div>
-            <h3 class="text-xl font-bold mb-4">販売から保守までワンストップ</h3>
-            <p class="text-sm text-textLight leading-relaxed">
-              機器の販売だけで終わらせません。事前の現地調査、美観を損ねない丁寧な施工、そして導入後の定期保守メンテナンスまで、一社完結の体制でお客様の負担を最小限に抑えます。
-            </p>
-          </div>
-
-          <!-- Strength 3 -->
-          <div class="bg-white/80 p-10 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(176,196,222,0.3)] transition-all duration-300 animate-on-scroll fade-up transform hover:-translate-y-2" style="transition-delay: 300ms;">
-            <div class="w-16 h-16 bg-primary/10 text-primary rounded-2xl flex items-center justify-center mb-6">
-              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-            </div>
-            <h3 class="text-xl font-bold mb-4">東京近郊エリアでの迅速対応</h3>
-            <p class="text-sm text-textLight leading-relaxed">
-              空調のトラブルは、ビジネスや生活に直結する緊急事態です。当社は東京近郊エリアに地域を絞ることで、急な故障や点検依頼に対してもフットワーク軽く、迅速に駆けつける体制を整えています。
-            </p>
           </div>
 
         </div>
@@ -277,19 +252,37 @@
     </section>
 
     <!-- ==============================================
-       CTA Section
+       Contact CTA Section (コンパクト＆高コントラスト)
     =============================================== -->
-    <section id="contact" class="py-32">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center animate-on-scroll fade-up">
-        <h2 class="text-3xl md:text-4xl font-bold mb-6">お問い合わせ・カタログ請求</h2>
-        <p class="text-textMain mb-10 leading-relaxed font-medium">
-          製品に関するご質問、施工のお見積り、カタログのご請求など、<br class="hidden sm:block">お気軽にご相談ください。
-        </p>
-        <div class="flex flex-col sm:flex-row justify-center gap-6">
-          <a href="#" class="flex items-center justify-center gap-2 bg-primary text-white px-10 py-5 rounded-full font-bold text-lg hover:bg-primaryDark transition-all shadow-xl hover:shadow-2xl transform hover:-translate-y-1">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-            お問い合わせフォームへ
-          </a>
+    <section id="contact" class="bg-slate-100 py-16 border-t border-slate-200 mt-12 animate-on-scroll fade-up">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col lg:flex-row items-center justify-between gap-10 bg-white p-10 md:p-12 rounded-3xl shadow-sm border border-slate-100">
+          
+          <!-- テキストエリア -->
+          <div class="flex-1 text-center lg:text-left">
+            <p class="text-primary font-bold text-sm tracking-widest mb-2 uppercase">Contact</p>
+            <h2 class="text-3xl font-bold text-slate-800 mb-4">お問い合わせ</h2>
+            <p class="text-slate-600 text-sm md:text-base leading-relaxed">
+              「何か起きてからでは遅い」空調のトラブル。<br class="hidden md:block">
+              様々なお困りごとや、ご要望をお聞かせください。<br class="hidden md:block">
+              ご状況に合った最適なサービス・機器のご提案をいたします。
+            </p>
+          </div>
+
+          <!-- アクションエリア (電話 ＆ ボタン) -->
+          <div class="flex flex-col sm:flex-row items-center gap-6">
+            <div class="text-center sm:text-right">
+              <p class="text-xs text-slate-500 font-medium mb-1">お電話でのご相談はこちら</p>
+              <div class="text-2xl md:text-3xl font-bold text-slate-800 font-sans tracking-wider">
+                Tel. <a href="tel:0300000000" class="hover:text-primary transition-colors">03-XXXX-XXXX</a>
+              </div>
+            </div>
+            <a href="#" class="flex items-center justify-center gap-2 bg-slate-800 text-white px-8 py-4 rounded-full font-bold hover:bg-slate-700 transition-colors shadow-lg hover:shadow-xl w-full sm:w-auto whitespace-nowrap">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+              お問い合わせフォーム
+            </a>
+          </div>
+
         </div>
       </div>
     </section>
@@ -297,7 +290,7 @@
   </main>
 
   <!-- ==============================================
-       Footer (全ページ共通)
+       Footer
   =============================================== -->
   <footer class="bg-slate-900 text-white py-16 relative z-10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -306,6 +299,7 @@
           <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white font-bold text-xl mb-6">J</div>
           <h2 class="text-xl font-bold mb-4">城西エアコン株式会社</h2>
           <p class="text-sm text-slate-400 leading-relaxed mb-4">
+            〒000-0000 東京都〇〇区〇〇 1-2-3<br>
             輸入空調専門会社<br>
             東京近郊の空調機・エアコンの輸入、販売、施工、保守
           </p>
@@ -313,18 +307,18 @@
         <div>
           <h3 class="font-bold mb-6 border-b border-slate-700 pb-2 inline-block">メニュー</h3>
           <ul class="text-sm text-slate-400 space-y-3">
-            <li><a href="#" class="hover:text-primary transition-colors flex items-center gap-2"><span class="w-1 h-1 bg-primary rounded-full"></span>製品カタログ</a></li>
+            <li><a href="#" class="hover:text-primary transition-colors flex items-center gap-2"><span class="w-1 h-1 bg-primary rounded-full"></span>ホーム</a></li>
+            <li><a href="#" class="hover:text-primary transition-colors flex items-center gap-2"><span class="w-1 h-1 bg-primary rounded-full"></span>製品情報</a></li>
             <li><a href="#" class="hover:text-primary transition-colors flex items-center gap-2"><span class="w-1 h-1 bg-primary rounded-full"></span>施工事例</a></li>
             <li><a href="#" class="hover:text-primary transition-colors flex items-center gap-2"><span class="w-1 h-1 bg-primary rounded-full"></span>会社概要</a></li>
-            <li><a href="#" class="hover:text-primary transition-colors flex items-center gap-2"><span class="w-1 h-1 bg-primary rounded-full"></span>プライバシーポリシー</a></li>
           </ul>
         </div>
         <div>
-          <h3 class="font-bold mb-6 border-b border-slate-700 pb-2 inline-block">お問い合わせ</h3>
-          <p class="text-sm text-slate-400 mb-4">製品のご相談やカタログ請求など</p>
-          <a href="#contact" class="inline-block bg-slate-800 hover:bg-slate-700 text-white text-sm px-6 py-3 rounded-full transition-colors border border-slate-700">
-            フォームからお問い合わせ
-          </a>
+          <h3 class="font-bold mb-6 border-b border-slate-700 pb-2 inline-block">関連リンク</h3>
+          <ul class="text-sm text-slate-400 space-y-3">
+            <li><a href="#" class="hover:text-primary transition-colors flex items-center gap-2">プライバシーポリシー</a></li>
+            <li><a href="#" class="hover:text-primary transition-colors flex items-center gap-2">サイトマップ</a></li>
+          </ul>
         </div>
       </div>
       <div class="text-center text-xs text-slate-500">
@@ -334,39 +328,27 @@
   </footer>
 
   <!-- ==============================================
-       Scripts (スクロール連動アニメーションの制御)
+       Scripts
   =============================================== -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      
       // Intersection Observerによるスクロールアニメーション発火
       const observerOptions = {
         root: null,
         rootMargin: '0px',
-        threshold: 0.15 // 要素が15%見えたら発火
+        threshold: 0.15 
       };
 
       const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            // 要素が画面に入ったら 'is-visible' クラスを付与
             entry.target.classList.add('is-visible');
-            
-            // 一度アニメーションしたら監視を解除（常に動かしたい場合はコメントアウト）
-            // observer.unobserve(entry.target);
           }
         });
       }, observerOptions);
 
-      // '.animate-on-scroll' クラスを持つ全ての要素を監視対象にする
       document.querySelectorAll('.animate-on-scroll').forEach(el => {
         observer.observe(el);
-      });
-
-      // モバイルメニューのトグル（プレースホルダー）
-      const mobileBtn = document.getElementById('mobile-menu-btn');
-      mobileBtn.addEventListener('click', () => {
-        alert('モバイルメニューを開きます（実装予定）');
       });
     });
   </script>
