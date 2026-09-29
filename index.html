@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>城西エアコン株式会社｜輸入空調機（旧GE・GAC社製）の販売・施工・保守</title>
+  <meta name="description" content="東京近郊での空調機・エアコンの輸入、販売、施工、入替、保守、修理はお任せください。旧GE社・GAC社製空調機の取扱実績が豊富です。">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Noto Sans JP -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind Custom Config -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#b0c4de', // ご指定のベースカラー (Light Steel Blue)
+            primaryDark: '#8ba4c9', // ホバー用
+            textMain: '#334155', // 可読性の高いスレートグレー
+            textLight: '#64748b',
+          },
+          fontFamily: {
+            sans: ['"Noto Sans JP"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom CSS for specific modern effects (Fade-in animations) -->
+  <style>
+    /* スクロール時のフェードインアニメーション用クラス */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .fade-in.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* ヒーローエリアのオーバーレイ */
+    .hero-overlay {
+      background: linear-gradient(to right, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.5) 100%);
+    }
+  </style>
+</head>
+<body class="text-textMain font-sans bg-white tracking-wide">
+
+  <!-- ==============================================
+       Header (全ページ共通)
+  =============================================== -->
+  <header class="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100 transition-all duration-300" id="global-header">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center gap-2">
+        <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white font-bold text-xl">J</div>
+        <div>
+          <h1 class="text-lg font-bold leading-tight">城西エアコン株式会社</h1>
+          <p class="text-[10px] text-textLight">輸入空調機のプロフェッショナル</p>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex gap-8 items-center text-sm font-medium">
+        <a href="index.html" class="text-primary border-b-2 border-primary pb-1">ホーム</a>
+        <a href="#about" class="hover:text-primary transition-colors">会社概要</a>
+        <a href="#services" class="hover:text-primary transition-colors">業務内容</a>
+        <a href="#products" class="hover:text-primary transition-colors">製品情報</a>
+        <a href="#contact" class="bg-primary text-white px-6 py-2.5 rounded-full hover:bg-primaryDark transition-all shadow-sm hover:shadow-md">お問い合わせ</a>
+      </nav>
+
+      <!-- Mobile Menu Button (Hamburger) -->
+      <button class="md:hidden text-gray-600 focus:outline-none" id="mobile-menu-btn">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ==============================================
+       Main Content
+  =============================================== -->
+  <main class="pt-20">
+    
+    <!-- Hero Section -->
+    <section class="relative w-full h-[600px] md:h-[700px] flex items-center bg-gray-100 overflow-hidden">
+      <!-- Background Image (Placeholder) -->
+      <div class="absolute inset-0 z-0">
+        <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=2000" alt="空調機イメージ" class="w-full h-full object-cover object-center">
+      </div>
+      <!-- Overlay Gradient -->
+      <div class="absolute inset-0 z-10 hero-overlay"></div>
+      
+      <!-- Content -->
+      <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div class="max-w-2xl fade-in">
+          <p class="text-primary font-bold tracking-widest text-sm mb-4">TOKYO / IMPORT AIR CONDITIONER</p>
+          <h2 class="text-4xl md:text-5xl font-bold leading-tight mb-6">
+            クリーンな空気を、<br>
+            確かな技術で。
+          </h2>
+          <p class="text-lg text-gray-700 leading-relaxed mb-8">
+            私たちは、旧GE社・GAC社製空調機の取扱実績を持つ、輸入空調の専門会社です。<br>
+            東京近郊を中心に、販売から施工、保守メンテナンスまで、一貫したサポートをお約束します。
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a href="#services" class="bg-primary text-white text-center px-8 py-3 rounded-full font-medium hover:bg-primaryDark transition-colors shadow-lg">サービスを見る</a>
+            <a href="#contact" class="bg-white text-primary border border-primary text-center px-8 py-3 rounded-full font-medium hover:bg-gray-50 transition-colors shadow-sm">カタログを請求する</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- News Section -->
+    <section class="py-12 bg-white border-b border-gray-100">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row md:items-center gap-6">
+          <h3 class="text-xl font-bold shrink-0">News</h3>
+          <ul class="flex-1 space-y-3 text-sm">
+            <!-- 既存サイトの情報を反映 -->
+            <li class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 border-b border-gray-100 pb-2">
+              <time class="text-primary font-medium w-24">2008.11.27</time>
+              <span class="bg-red-50 text-red-500 border border-red-200 text-xs px-2 py-0.5 rounded-sm">NEW</span>
+              <a href="#" class="hover:text-primary transition-colors">ウォールスルーエアコン(JRBP282P)を製品リストに追加しました</a>
+            </li>
+            <li class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 border-b border-gray-100 pb-2">
+              <time class="text-primary font-medium w-24">2008.11.26</time>
+              <span class="bg-red-50 text-red-500 border border-red-200 text-xs px-2 py-0.5 rounded-sm">NEW</span>
+              <a href="#" class="hover:text-primary transition-colors">サーモスタット(JY28J380H)を製品リストに追加しました</a>
+            </li>
+            <li class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 pb-2">
+              <time class="text-primary font-medium w-24">2007.12.17</time>
+              <span class="w-10"></span> <!-- alignment spacer -->
+              <a href="#" class="hover:text-primary transition-colors">アメリカンスタンダード製13SEER室外機を製品リストに追加しました</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16 fade-in">
+          <p class="text-primary font-bold text-sm tracking-wider mb-2">SERVICES</p>
+          <h2 class="text-3xl font-bold">弊社業務内容</h2>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Service 1 -->
+          <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow fade-in">
+            <div class="w-12 h-12 bg-blue-50 text-primary rounded-xl flex items-center justify-center mb-6">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
+            </div>
+            <h3 class="text-xl font-bold mb-4">輸入・販売</h3>
+            <p class="text-sm text-textLight leading-relaxed">
+              旧GE社、GAC社製空調機の取扱ノウハウを活かし、最適な輸入空調製品をご提案・販売いたします。適応機種の選定もお任せください。
+            </p>
+          </div>
+          <!-- Service 2 -->
+          <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow fade-in" style="transition-delay: 100ms;">
+            <div class="w-12 h-12 bg-blue-50 text-primary rounded-xl flex items-center justify-center mb-6">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+            </div>
+            <h3 class="text-xl font-bold mb-4">施工・入替</h3>
+            <p class="text-sm text-textLight leading-relaxed">
+              一般住宅から商業施設まで、現地の状況に合わせた確実な施工を実施。古い機器からのスムーズな入替工事にも対応しております。
+            </p>
+          </div>
+          <!-- Service 3 -->
+          <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow fade-in" style="transition-delay: 200ms;">
+            <div class="w-12 h-12 bg-blue-50 text-primary rounded-xl flex items-center justify-center mb-6">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+            </div>
+            <h3 class="text-xl font-bold mb-4">保守・修理・点検</h3>
+            <p class="text-sm text-textLight leading-relaxed">
+              長期にわたって安全・快適にご使用いただくため、定期的なメンテナンスや万が一の故障時の迅速な修理対応を行っています。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="contact" class="py-24 bg-white">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center fade-in">
+        <h2 class="text-3xl font-bold mb-6">お問い合わせ・カタログ請求</h2>
+        <p class="text-textLight mb-10">
+          製品に関するご質問、施工のお見積り、カタログのご請求など、<br class="hidden sm:block">お気軽にご相談ください。
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center gap-6">
+          <a href="#" class="flex items-center justify-center gap-2 bg-primary text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-primaryDark transition-all shadow-md">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+            お問い合わせフォーム
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==============================================
+       Footer (全ページ共通)
+  =============================================== -->
+  <footer class="bg-slate-800 text-white py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 border-b border-slate-700 pb-8 mb-8">
+        <!-- Footer Col 1 -->
+        <div>
+          <h2 class="text-xl font-bold mb-4">城西エアコン株式会社</h2>
+          <p class="text-sm text-slate-400 leading-relaxed mb-4">
+            輸入空調専門会社<br>
+            東京近郊の空調機・エアコンの輸入、販売、施工、保守
+          </p>
+        </div>
+        <!-- Footer Col 2 -->
+        <div>
+          <h3 class="font-bold mb-4 border-b border-slate-600 pb-2 inline-block">メニュー</h3>
+          <ul class="text-sm text-slate-400 space-y-2">
+            <li><a href="#" class="hover:text-primary transition-colors">製品カタログ</a></li>
+            <li><a href="#" class="hover:text-primary transition-colors">施工事例</a></li>
+            <li><a href="#" class="hover:text-primary transition-colors">会社概要</a></li>
+            <li><a href="#" class="hover:text-primary transition-colors">プライバシーポリシー</a></li>
+          </ul>
+        </div>
+        <!-- Footer Col 3 -->
+        <div>
+          <h3 class="font-bold mb-4 border-b border-slate-600 pb-2 inline-block">お問い合わせ</h3>
+          <p class="text-sm text-slate-400 mb-2">製品のご相談やカタログ請求など</p>
+          <a href="#contact" class="inline-block bg-slate-700 hover:bg-slate-600 text-white text-sm px-4 py-2 rounded transition-colors">
+            フォームからお問い合わせ
+          </a>
+        </div>
+      </div>
+      <div class="text-center text-xs text-slate-500">
+        &copy; Jousai Aircon Co.,Ltd. All Rights Reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==============================================
+       Scripts
+  =============================================== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. スクロール時のフェードインアニメーション (Intersection Observer)
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+      };
+
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.fade-in').forEach(el => {
+        observer.observe(el);
+      });
+
+      // 2. スマホ用モバイルメニューのトグル（簡易実装）
+      const mobileBtn = document.getElementById('mobile-menu-btn');
+      // ※実際はここにドロップダウンメニューの開閉ロジックを追加します
+      mobileBtn.addEventListener('click', () => {
+        alert('モバイルメニュー開閉機能（実装予定）');
+      });
+    });
+  </script>
+</body>
+</html>
