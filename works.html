@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>製品情報｜城西エアコン株式会社</title>
-  <meta name="description" content="城西エアコン株式会社が取り扱うアメリカン・スタンダード製品、ウォールスルーエアコン、サーモスタットなどの製品カタログ一覧です。">
+  <title>施工事例｜城西エアコン株式会社</title>
+  <meta name="description" content="城西エアコン株式会社の施工事例・実績をご紹介します。東京近郊でのアメリカン・スタンダード製品や旧GE・GAC社製空調機の入替・設置工事はお任せください。">
   
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -62,9 +62,14 @@
       background: linear-gradient(to right, rgba(15,23,42,0.8), rgba(15,23,42,0.4));
     }
     
-    /* JSページネーション用の非表示クラス */
-    .hidden-product {
-      display: none !important;
+    /* 絞り込みアニメーション用クラス */
+    .work-item {
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .work-item.hidden-item {
+      display: none;
+      opacity: 0;
+      transform: scale(0.95);
     }
   </style>
 </head>
@@ -85,8 +90,8 @@
       <nav class="hidden md:flex gap-8 items-center text-sm font-medium">
         <a href="index.html" class="hover:text-primary transition-colors">ホーム</a>
         <a href="company.html" class="hover:text-primary transition-colors">会社概要</a>
-        <a href="works.html" class="hover:text-primary transition-colors">施工事例</a>
-        <a href="products.html" class="text-primary border-b-2 border-primary pb-1">製品情報</a>
+        <a href="works.html" class="text-primary border-b-2 border-primary pb-1">施工事例</a>
+        <a href="products.html" class="hover:text-primary transition-colors">製品情報</a>
         <a href="contact.html" class="bg-primary text-white px-6 py-2.5 rounded-full hover:bg-primaryDark transition-all shadow-md hover:shadow-lg">お問い合わせ</a>
       </nav>
       <button class="md:hidden text-gray-600 focus:outline-none">
@@ -97,15 +102,16 @@
 
   <main class="pt-20">
     
-    <!-- Subpage Hero Section (安定した高画質画像へ修正) -->
+    <!-- Subpage Hero Section (★画像パスと色味を修正) -->
     <section class="relative w-full h-[35vh] md:h-[40vh] flex items-center justify-center overflow-hidden">
       <div class="absolute inset-0 z-0">
-        <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=2000" alt="製品情報イメージ" class="w-full h-full object-cover object-center transform scale-105">
+        <!-- 空調ダクトや設備を連想させる安定したURLの画像 -->
+        <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&q=80&w=2000" alt="施工実績イメージ" class="w-full h-full object-cover object-center transform scale-105">
         <div class="absolute inset-0 subhero-overlay"></div>
       </div>
       <div class="relative z-10 text-center animate-on-scroll fade-up">
-        <h2 class="text-4xl md:text-5xl font-bold text-white mb-4 tracking-widest">取扱製品</h2>
-        <p class="text-primary font-bold tracking-[0.3em] text-sm uppercase">Products</p>
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-4 tracking-widest">施工事例</h2>
+        <p class="text-primary font-bold tracking-[0.3em] text-sm uppercase">Our Works</p>
       </div>
     </section>
 
@@ -115,178 +121,142 @@
         <nav class="text-xs font-medium text-slate-500">
           <a href="index.html" class="hover:text-primary transition-colors">ホーム</a>
           <span class="mx-2 text-slate-300">&gt;</span>
-          <span class="text-slate-800">製品情報</span>
+          <span class="text-slate-800">施工事例</span>
         </nav>
       </div>
     </div>
 
-    <!-- Search Navigation -->
-    <section class="py-12 md:py-16">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-8 animate-on-scroll fade-up">
-          <h2 class="text-2xl md:text-3xl font-bold text-slate-800">製品を探す</h2>
-          <p class="text-primary font-bold tracking-widest mt-2">PRODUCT SEARCH</p>
-        </div>
-        <div class="bg-white/90 backdrop-blur-md rounded-2xl shadow-sm border border-slate-200 overflow-hidden animate-on-scroll fade-up">
-          <div class="flex flex-col md:flex-row divide-y md:divide-y-0 md:divide-x divide-dashed divide-slate-300">
-            <a href="#" class="flex-1 py-8 px-4 flex flex-col items-center justify-center group hover:bg-slate-50 transition-colors">
-              <div class="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 mb-4 group-hover:text-primary group-hover:scale-110 transition-transform"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg></div>
-              <h3 class="font-bold text-slate-800 text-lg">メーカー</h3>
-              <p class="text-xs text-slate-500 mt-1">で探す</p>
-            </a>
-            <a href="#" class="flex-1 py-8 px-4 flex flex-col items-center justify-center group hover:bg-slate-50 transition-colors">
-              <div class="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 mb-4 group-hover:text-primary group-hover:scale-110 transition-transform"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg></div>
-              <h3 class="font-bold text-slate-800 text-lg">カテゴリー</h3>
-              <p class="text-xs text-slate-500 mt-1">で探す</p>
-            </a>
-            <a href="#" class="flex-1 py-8 px-4 flex flex-col items-center justify-center group hover:bg-slate-50 transition-colors">
-              <div class="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 mb-4 group-hover:text-primary group-hover:scale-110 transition-transform"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 21h7a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v11m0 5l4.879-4.879m0 0a3 3 0 104.243-4.242 3 3 0 00-4.243 4.242z"></path></svg></div>
-              <h3 class="font-bold text-slate-800 text-lg">適応機種</h3>
-              <p class="text-xs text-slate-500 mt-1">から探す</p>
-            </a>
-            <a href="#" class="flex-1 py-8 px-4 flex flex-col items-center justify-center group hover:bg-slate-50 transition-colors">
-              <div class="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 mb-4 group-hover:text-primary group-hover:scale-110 transition-transform"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg></div>
-              <h3 class="font-bold text-slate-800 text-lg">PDFカタログ</h3>
-              <p class="text-xs text-slate-500 mt-1">ダウンロード</p>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==============================================
-       Product Grid (全製品をここに記述し、JSでページ切り替え)
-    =============================================== -->
-    <section class="py-12 pb-32 relative">
+    <!-- Works Content -->
+    <section class="py-20 md:py-24 relative">
       <div class="absolute inset-0 bg-white/40 backdrop-blur-[2px] z-0"></div>
 
       <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <!-- id="product-list" を付与し、JSで制御 -->
-        <div id="product-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16 animate-on-scroll fade-up">
+        <div class="flex flex-col lg:flex-row gap-16 items-start">
           
-          <!-- Product Item 1 -->
-          <a href="#" class="product-item group block">
-            <div class="relative aspect-[4/3] rounded-2xl overflow-hidden bg-white border-2 border-slate-800 shadow-[6px_6px_0px_#1e293b] group-hover:shadow-[0px_0px_0px_#1e293b] group-hover:translate-x-[6px] group-hover:translate-y-[6px] transition-all duration-200">
-              <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&q=80&w=600" alt="アメリカンスタンダード製 13SEER室外機" class="w-full h-full object-cover">
-            </div>
-            <div class="mt-6">
-              <p class="text-sm font-bold text-slate-800 mb-1 tracking-wide">2A6C3060A3000A</p>
-              <h3 class="text-base text-slate-600 font-medium group-hover:text-primary transition-colors leading-snug">アメリカン・スタンダード製<br>13SEER室外機</h3>
-            </div>
-          </a>
+          <!-- 左側: サイドバー (★data-filter属性を追加) -->
+          <aside class="w-full lg:w-1/4 lg:sticky lg:top-32 animate-on-scroll fade-up">
+            <div class="mb-10">
+              <h3 class="text-lg font-bold text-slate-800 tracking-widest mb-6 flex items-center gap-2">
+                CATEGORY <span class="text-xs text-slate-400 font-normal">ー カテゴリ</span>
+              </h3>
+              
+              <!-- カテゴリリスト 1: 施工内容 -->
+              <div class="mb-8">
+                <h4 class="font-bold text-slate-700 mb-4">施工内容</h4>
+                <ul class="space-y-3 text-sm text-slate-600 font-medium filter-group">
+                  <li data-filter="all" class="filter-btn text-primary cursor-pointer before:content-['—'] before:mr-2 before:text-slate-400">すべて</li>
+                  <li data-filter="新規設置・導入" class="filter-btn hover:text-primary transition-colors cursor-pointer before:content-['—'] before:mr-2 before:text-slate-400">新規設置・導入</li>
+                  <li data-filter="入替・更新工事" class="filter-btn hover:text-primary transition-colors cursor-pointer before:content-['—'] before:mr-2 before:text-slate-400">入替・更新工事</li>
+                  <li data-filter="保守・修理・点検" class="filter-btn hover:text-primary transition-colors cursor-pointer before:content-['—'] before:mr-2 before:text-slate-400">保守・修理・点検</li>
+                </ul>
+              </div>
 
-          <!-- Product Item 2 -->
-          <a href="#" class="product-item group block">
-            <div class="relative aspect-[4/3] rounded-2xl overflow-hidden bg-white border-2 border-slate-800 shadow-[6px_6px_0px_#1e293b] group-hover:shadow-[0px_0px_0px_#1e293b] group-hover:translate-x-[6px] group-hover:translate-y-[6px] transition-all duration-200">
-              <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&q=80&w=600" alt="アメリカンスタンダード製 13SEER室外機" class="w-full h-full object-cover">
+              <!-- カテゴリリスト 2: 施設種別 -->
+              <div>
+                <h4 class="font-bold text-slate-700 mb-4">施設種別</h4>
+                <ul class="space-y-3 text-sm text-slate-600 font-medium filter-group">
+                  <li data-filter="一般住宅" class="filter-btn hover:text-primary transition-colors cursor-pointer before:content-['—'] before:mr-2 before:text-slate-400">一般住宅・マンション</li>
+                  <li data-filter="オフィス・商業ビル" class="filter-btn hover:text-primary transition-colors cursor-pointer before:content-['—'] before:mr-2 before:text-slate-400">オフィス・商業ビル</li>
+                  <li data-filter="公共施設・その他" class="filter-btn hover:text-primary transition-colors cursor-pointer before:content-['—'] before:mr-2 before:text-slate-400">公共施設・その他</li>
+                </ul>
+              </div>
             </div>
-            <div class="mt-6">
-              <p class="text-sm font-bold text-slate-800 mb-1 tracking-wide">2A6C3036A3000A</p>
-              <h3 class="text-base text-slate-600 font-medium group-hover:text-primary transition-colors leading-snug">アメリカン・スタンダード製<br>13SEER室外機</h3>
-            </div>
-          </a>
+          </aside>
 
-          <!-- Product Item 3 -->
-          <a href="#" class="product-item group block">
-            <div class="relative aspect-[4/3] rounded-2xl overflow-hidden bg-white border-2 border-slate-800 shadow-[6px_6px_0px_#1e293b] group-hover:shadow-[0px_0px_0px_#1e293b] group-hover:translate-x-[6px] group-hover:translate-y-[6px] transition-all duration-200">
-              <img src="https://images.unsplash.com/photo-1616781447604-013fc951c411?auto=format&fit=crop&q=80&w=600" alt="アメリカンスタンダード製 13SEER室外機" class="w-full h-full object-cover">
-            </div>
-            <div class="mt-6">
-              <p class="text-sm font-bold text-slate-800 mb-1 tracking-wide">2A6H3024A1000A</p>
-              <h3 class="text-base text-slate-600 font-medium group-hover:text-primary transition-colors leading-snug">アメリカン・スタンダード製<br>13SEER室外機</h3>
-            </div>
-          </a>
+          <!-- 右側: 施工事例グリッド -->
+          <div class="w-full lg:w-3/4">
+            <div id="works-container" class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-16">
+              
+              <!-- Work Item 1 (★data-category属性にカテゴリ名を付与) -->
+              <a href="#" class="work-item group block animate-on-scroll fade-up" data-category="入替・更新工事 一般住宅">
+                <div class="relative w-full aspect-[4/3] overflow-hidden rounded-lg bg-slate-200">
+                  <img src="https://images.unsplash.com/photo-1574362848149-11496d93a7c7?auto=format&fit=crop&q=80&w=800" alt="施工事例1" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+                </div>
+                <div class="mt-5 flex flex-wrap gap-2">
+                  <span class="bg-white border border-slate-300 text-slate-700 text-[11px] font-bold px-3 py-1 rounded-sm">入替・更新工事</span>
+                  <span class="bg-white border border-slate-300 text-slate-700 text-[11px] font-bold px-3 py-1 rounded-sm">一般住宅</span>
+                </div>
+                <h3 class="mt-4 text-xl font-bold text-slate-800 group-hover:text-primary transition-colors leading-snug">
+                  都内マンション ウォールスルーエアコン入替工事
+                </h3>
+              </a>
 
-          <!-- Product Item 4 -->
-          <a href="#" class="product-item group block">
-            <div class="relative aspect-[4/3] rounded-2xl overflow-hidden bg-white border-2 border-slate-800 shadow-[6px_6px_0px_#1e293b] group-hover:shadow-[0px_0px_0px_#1e293b] group-hover:translate-x-[6px] group-hover:translate-y-[6px] transition-all duration-200">
-              <img src="https://images.unsplash.com/photo-1598285521976-599deca437ee?auto=format&fit=crop&q=80&w=600" alt="ウォールスルーエアコン" class="w-full h-full object-cover">
-            </div>
-            <div class="mt-6">
-              <p class="text-sm font-bold text-slate-800 mb-1 tracking-wide">JRBP282P</p>
-              <h3 class="text-base text-slate-600 font-medium group-hover:text-primary transition-colors leading-snug">ウォールスルーエアコン<br>（壁埋め込み型）</h3>
-            </div>
-          </a>
+              <!-- Work Item 2 -->
+              <a href="#" class="work-item group block animate-on-scroll fade-up" data-category="新規設置・導入 オフィス・商業ビル">
+                <div class="relative w-full aspect-[4/3] overflow-hidden rounded-lg bg-slate-200">
+                  <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800" alt="施工事例2" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+                </div>
+                <div class="mt-5 flex flex-wrap gap-2">
+                  <span class="bg-white border border-slate-300 text-slate-700 text-[11px] font-bold px-3 py-1 rounded-sm">新規設置・導入</span>
+                  <span class="bg-white border border-slate-300 text-slate-700 text-[11px] font-bold px-3 py-1 rounded-sm">オフィス・商業ビル</span>
+                </div>
+                <h3 class="mt-4 text-xl font-bold text-slate-800 group-hover:text-primary transition-colors leading-snug">
+                  千代田区 商業ビル 空調設備一式 新規導入
+                </h3>
+              </a>
 
-          <!-- Product Item 5 (リンク切れ修正済) -->
-          <a href="#" class="product-item group block">
-            <div class="relative aspect-[4/3] rounded-2xl overflow-hidden bg-white border-2 border-slate-800 shadow-[6px_6px_0px_#1e293b] group-hover:shadow-[0px_0px_0px_#1e293b] group-hover:translate-x-[6px] group-hover:translate-y-[6px] transition-all duration-200">
-              <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=80&w=600" alt="サーモスタット" class="w-full h-full object-cover">
-            </div>
-            <div class="mt-6">
-              <p class="text-sm font-bold text-slate-800 mb-1 tracking-wide">JY28J380H</p>
-              <h3 class="text-base text-slate-600 font-medium group-hover:text-primary transition-colors leading-snug">サーモスタット<br>（温度・湿度制御）</h3>
-            </div>
-          </a>
+              <!-- Work Item 3 -->
+              <a href="#" class="work-item group block animate-on-scroll fade-up" data-category="保守・修理・点検 オフィス・商業ビル">
+                <div class="relative w-full aspect-[4/3] overflow-hidden rounded-lg bg-slate-200">
+                  <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=80&w=800" alt="施工事例3" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+                </div>
+                <div class="mt-5 flex flex-wrap gap-2">
+                  <span class="bg-white border border-slate-300 text-slate-700 text-[11px] font-bold px-3 py-1 rounded-sm">保守・修理・点検</span>
+                  <span class="bg-white border border-slate-300 text-slate-700 text-[11px] font-bold px-3 py-1 rounded-sm">オフィス・商業ビル</span>
+                </div>
+                <h3 class="mt-4 text-xl font-bold text-slate-800 group-hover:text-primary transition-colors leading-snug">
+                  輸入空調機（GAC社製） 定期メンテナンス及び部品交換
+                </h3>
+              </a>
 
-          <!-- Product Item 6 -->
-          <a href="#" class="product-item group block">
-            <div class="relative aspect-[4/3] rounded-2xl overflow-hidden bg-white border-2 border-slate-800 shadow-[6px_6px_0px_#1e293b] group-hover:shadow-[0px_0px_0px_#1e293b] group-hover:translate-x-[6px] group-hover:translate-y-[6px] transition-all duration-200">
-              <img src="https://images.unsplash.com/photo-1545259741-2ea3ebf61fa3?auto=format&fit=crop&q=80&w=600" alt="加湿器" class="w-full h-full object-cover">
-            </div>
-            <div class="mt-6">
-              <p class="text-sm font-bold text-slate-800 mb-1 tracking-wide">Aprilaire700</p>
-              <h3 class="text-base text-slate-600 font-medium group-hover:text-primary transition-colors leading-snug">Aprilaire 加湿器<br>（ダクト接続型）</h3>
-            </div>
-          </a>
+              <!-- Work Item 4 -->
+              <a href="#" class="work-item group block animate-on-scroll fade-up" data-category="入替・更新工事 一般住宅">
+                <div class="relative w-full aspect-[4/3] overflow-hidden rounded-lg bg-slate-200">
+                  <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800" alt="施工事例4" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+                </div>
+                <div class="mt-5 flex flex-wrap gap-2">
+                  <span class="bg-white border border-slate-300 text-slate-700 text-[11px] font-bold px-3 py-1 rounded-sm">入替・更新工事</span>
+                  <span class="bg-white border border-slate-300 text-slate-700 text-[11px] font-bold px-3 py-1 rounded-sm">一般住宅</span>
+                </div>
+                <h3 class="mt-4 text-xl font-bold text-slate-800 group-hover:text-primary transition-colors leading-snug">
+                  戸建て住宅 天井埋め込み型エアコン 更新工事
+                </h3>
+              </a>
+              
+              <!-- Work Item 5 -->
+              <a href="#" class="work-item group block animate-on-scroll fade-up" data-category="保守・修理・点検 公共施設・その他">
+                <div class="relative w-full aspect-[4/3] overflow-hidden rounded-lg bg-slate-200">
+                  <img src="https://images.unsplash.com/photo-1545259741-2ea3ebf61fa3?auto=format&fit=crop&q=80&w=800" alt="施工事例5" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+                </div>
+                <div class="mt-5 flex flex-wrap gap-2">
+                  <span class="bg-white border border-slate-300 text-slate-700 text-[11px] font-bold px-3 py-1 rounded-sm">保守・修理・点検</span>
+                  <span class="bg-white border border-slate-300 text-slate-700 text-[11px] font-bold px-3 py-1 rounded-sm">公共施設・その他</span>
+                </div>
+                <h3 class="mt-4 text-xl font-bold text-slate-800 group-hover:text-primary transition-colors leading-snug">
+                  サーモスタット（Aprilaire）および各種計器 制御盤修理
+                </h3>
+              </a>
 
-          <!-- Product Item 7 -->
-          <a href="#" class="product-item group block">
-            <div class="relative aspect-[4/3] rounded-2xl overflow-hidden bg-white border-2 border-slate-800 shadow-[6px_6px_0px_#1e293b] group-hover:shadow-[0px_0px_0px_#1e293b] group-hover:translate-x-[6px] group-hover:translate-y-[6px] transition-all duration-200">
-              <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=600" alt="サンプヒーター" class="w-full h-full object-cover">
-            </div>
-            <div class="mt-6">
-              <p class="text-sm font-bold text-slate-800 mb-1 tracking-wide">J827930010</p>
-              <h3 class="text-base text-slate-600 font-medium group-hover:text-primary transition-colors leading-snug">サンプヒーター<br>（コンプレッサー保護用）</h3>
-            </div>
-          </a>
+              <!-- Work Item 6 -->
+              <a href="#" class="work-item group block animate-on-scroll fade-up" data-category="新規設置・導入 一般住宅">
+                <div class="relative w-full aspect-[4/3] overflow-hidden rounded-lg bg-slate-200">
+                  <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=800" alt="施工事例6" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+                </div>
+                <div class="mt-5 flex flex-wrap gap-2">
+                  <span class="bg-white border border-slate-300 text-slate-700 text-[11px] font-bold px-3 py-1 rounded-sm">新規設置・導入</span>
+                  <span class="bg-white border border-slate-300 text-slate-700 text-[11px] font-bold px-3 py-1 rounded-sm">一般住宅</span>
+                </div>
+                <h3 class="mt-4 text-xl font-bold text-slate-800 group-hover:text-primary transition-colors leading-snug">
+                  高級輸入住宅 13SEER室外機 全館空調システム導入
+                </h3>
+              </a>
 
-          <!-- Product Item 8 -->
-          <a href="#" class="product-item group block">
-            <div class="relative aspect-[4/3] rounded-2xl overflow-hidden bg-white border-2 border-slate-800 shadow-[6px_6px_0px_#1e293b] group-hover:shadow-[0px_0px_0px_#1e293b] group-hover:translate-x-[6px] group-hover:translate-y-[6px] transition-all duration-200">
-              <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&q=80&w=600" alt="アクセサリ" class="w-full h-full object-cover">
             </div>
-            <div class="mt-6">
-              <p class="text-sm font-bold text-slate-800 mb-1 tracking-wide">PARTS-001</p>
-              <h3 class="text-base text-slate-600 font-medium group-hover:text-primary transition-colors leading-snug">各種メンテナンス部品・<br>交換用フィルター</h3>
-            </div>
-          </a>
-
-          <!-- Product Item 9 (ページネーションテスト用) -->
-          <a href="#" class="product-item group block">
-            <div class="relative aspect-[4/3] rounded-2xl overflow-hidden bg-white border-2 border-slate-800 shadow-[6px_6px_0px_#1e293b] group-hover:shadow-[0px_0px_0px_#1e293b] group-hover:translate-x-[6px] group-hover:translate-y-[6px] transition-all duration-200">
-              <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&q=80&w=600" alt="空調部品" class="w-full h-full object-cover">
-            </div>
-            <div class="mt-6">
-              <p class="text-sm font-bold text-slate-800 mb-1 tracking-wide">PARTS-002</p>
-              <h3 class="text-base text-slate-600 font-medium group-hover:text-primary transition-colors leading-snug">制御基板アセンブリ<br>（旧GAC対応）</h3>
-            </div>
-          </a>
-
-          <!-- Product Item 10 (ページネーションテスト用) -->
-          <a href="#" class="product-item group block">
-            <div class="relative aspect-[4/3] rounded-2xl overflow-hidden bg-white border-2 border-slate-800 shadow-[6px_6px_0px_#1e293b] group-hover:shadow-[0px_0px_0px_#1e293b] group-hover:translate-x-[6px] group-hover:translate-y-[6px] transition-all duration-200">
-              <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=600" alt="空調部品" class="w-full h-full object-cover">
-            </div>
-            <div class="mt-6">
-              <p class="text-sm font-bold text-slate-800 mb-1 tracking-wide">PARTS-003</p>
-              <h3 class="text-base text-slate-600 font-medium group-hover:text-primary transition-colors leading-snug">ドレンアップキット<br>（汎用）</h3>
-            </div>
-          </a>
-
+          </div>
         </div>
-
-        <!-- ==============================================
-           Pagination (JSで動的に生成・制御)
-        =============================================== -->
-        <div id="pagination-container" class="mt-20 flex justify-center items-end gap-2 animate-on-scroll fade-up">
-          <!-- JSでここにボタンが挿入されます -->
-        </div>
-
       </div>
     </section>
-
   </main>
 
   <!-- Footer -->
@@ -325,6 +295,7 @@
     </div>
   </footer>
 
+  <!-- Scripts -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       // 1. スクロールアニメーション
@@ -335,78 +306,46 @@
           }
         });
       }, { root: null, rootMargin: '0px', threshold: 0.15 });
-
       document.querySelectorAll('.animate-on-scroll').forEach(el => {
         observer.observe(el);
       });
 
-      // 2. 自動ページネーション機能
-      const itemsPerPage = 8; // 1ページあたりの表示件数
-      const products = document.querySelectorAll('.product-item');
-      const totalPages = Math.ceil(products.length / itemsPerPage);
-      const paginationContainer = document.getElementById('pagination-container');
-      let currentPage = 1;
+      // 2. ★JavaScriptによるカテゴリ絞り込み処理
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const workItems = document.querySelectorAll('.work-item');
 
-      // 指定されたページの製品だけを表示する関数
-      const showPage = (pageNumber) => {
-        const startIndex = (pageNumber - 1) * itemsPerPage;
-        const endIndex = startIndex + itemsPerPage;
-
-        products.forEach((product, index) => {
-          if (index >= startIndex && index < endIndex) {
-            product.classList.remove('hidden-product');
-          } else {
-            product.classList.add('hidden-product');
-          }
-        });
-        updatePaginationUI(pageNumber);
-      };
-
-      // ページネーションボタンの生成とUI更新
-      const updatePaginationUI = (activePage) => {
-        paginationContainer.innerHTML = ''; // 一度クリア
-
-        for (let i = 1; i <= totalPages; i++) {
-          const btn = document.createElement('button');
-          btn.textContent = i;
-          
-          // アクティブなページ（現在地）のスタイル
-          if (i === activePage) {
-            btn.className = 'w-10 h-10 flex items-center justify-center bg-slate-800 border border-slate-800 text-white font-bold text-sm shadow-sm transition-colors cursor-default';
-          } 
-          // それ以外のページのスタイル
-          else {
-            btn.className = 'w-10 h-10 flex items-center justify-center bg-white border border-slate-800 text-slate-800 font-bold text-sm hover:bg-slate-100 transition-colors cursor-pointer';
-            btn.addEventListener('click', (e) => {
-              e.preventDefault();
-              currentPage = i;
-              showPage(currentPage);
-              // ページ遷移時に一覧のトップへ軽くスクロール
-              document.getElementById('product-list').scrollIntoView({ behavior: 'smooth', block: 'start' });
-            });
-          }
-          paginationContainer.appendChild(btn);
-        }
-
-        // 次へボタンの追加 (最終ページ以外)
-        if (activePage < totalPages) {
-          const nextBtn = document.createElement('button');
-          nextBtn.innerHTML = '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>';
-          nextBtn.className = 'w-10 h-10 ml-4 flex items-center justify-center bg-white border border-slate-800 text-slate-800 hover:bg-slate-100 transition-colors cursor-pointer';
-          nextBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            currentPage++;
-            showPage(currentPage);
-            document.getElementById('product-list').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          // サイドバーのアクティブ状態をリセット
+          filterBtns.forEach(b => {
+            b.classList.remove('text-primary');
           });
-          paginationContainer.appendChild(nextBtn);
-        }
-      };
+          // クリックされたボタンをアクティブ（青色）にする
+          btn.classList.add('text-primary');
 
-      // 初期ロード時に1ページ目を表示
-      if (products.length > 0) {
-        showPage(1);
-      }
+          const filterValue = btn.getAttribute('data-filter');
+
+          // 各事例カードをチェック
+          workItems.forEach(item => {
+            const itemCategories = item.getAttribute('data-category');
+            
+            // "all"が選ばれたか、要素がカテゴリを含んでいる場合
+            if (filterValue === 'all' || itemCategories.includes(filterValue)) {
+              item.classList.remove('hidden-item');
+              // アニメーションのために少し遅延させて表示
+              setTimeout(() => {
+                item.style.display = 'block';
+              }, 50);
+            } else {
+              // 該当しない場合は隠す
+              item.classList.add('hidden-item');
+              setTimeout(() => {
+                item.style.display = 'none';
+              }, 400); // CSSのtransition時間(0.4s)に合わせる
+            }
+          });
+        });
+      });
     });
   </script>
 </body>
