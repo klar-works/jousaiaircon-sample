@@ -16,7 +16,7 @@
       theme: {
         extend: {
           colors: {
-            primary: '#b0c4de', // Light Steel Blue
+            primary: '#b0c4de',
             primaryDark: '#8ba4c9',
             textMain: '#1e293b', 
             textLight: '#475569',
@@ -30,7 +30,6 @@
   </script>
 
   <style>
-    /* 背景アニメーション (全ページ共通) */
     .bg-animated {
       position: fixed;
       top: 0;
@@ -47,8 +46,6 @@
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
-    
-    /* スクロールアニメーション共通 */
     .animate-on-scroll {
       opacity: 0;
       will-change: transform, opacity;
@@ -61,21 +58,26 @@
       opacity: 1;
       transform: translate(0, 0);
     }
-    
-    /* 下層ページ用グラデーションオーバーレイ */
     .subhero-overlay {
-      background: linear-gradient(to right, rgba(15,23,42,0.7), rgba(15,23,42,0.3));
+      background: linear-gradient(to right, rgba(15,23,42,0.8), rgba(15,23,42,0.4));
+    }
+    
+    /* 絞り込みアニメーション用クラス */
+    .work-item {
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .work-item.hidden-item {
+      display: none;
+      opacity: 0;
+      transform: scale(0.95);
     }
   </style>
 </head>
 <body class="text-textMain font-sans tracking-wide overflow-x-hidden">
 
-  <!-- 動く背景レイヤー -->
   <div class="bg-animated"></div>
 
-  <!-- ==============================================
-       Header (共通パーツ)
-  =============================================== -->
+  <!-- Header -->
   <header class="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-white/50 transition-all duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
       <a href="index.html" class="flex items-center gap-3 group">
@@ -100,13 +102,11 @@
 
   <main class="pt-20">
     
-    <!-- ==============================================
-       Subpage Hero Section
-    =============================================== -->
+    <!-- Subpage Hero Section (★画像パスと色味を修正) -->
     <section class="relative w-full h-[35vh] md:h-[40vh] flex items-center justify-center overflow-hidden">
       <div class="absolute inset-0 z-0">
-        <!-- 施工現場や建築物を連想させる画像 -->
-        <img src="https://images.unsplash.com/photo-1541888086925-ebbc3306871a?auto=format&fit=crop&q=80&w=2000" alt="施工実績イメージ" class="w-full h-full object-cover object-center transform scale-105">
+        <!-- 空調ダクトや設備を連想させる安定したURLの画像 -->
+        <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&q=80&w=2000" alt="施工実績イメージ" class="w-full h-full object-cover object-center transform scale-105">
         <div class="absolute inset-0 subhero-overlay"></div>
       </div>
       <div class="relative z-10 text-center animate-on-scroll fade-up">
@@ -126,20 +126,16 @@
       </div>
     </div>
 
-    <!-- ==============================================
-       Works Content (サイドバー ＋ ノーカードグリッド)
-    =============================================== -->
+    <!-- Works Content -->
     <section class="py-20 md:py-24 relative">
-      <!-- 視認性確保のためのごく薄い白オーバーレイ (カード化はせず全体に敷く) -->
       <div class="absolute inset-0 bg-white/40 backdrop-blur-[2px] z-0"></div>
 
       <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div class="flex flex-col lg:flex-row gap-16 items-start">
           
-          <!-- 左側: サイドバー (カテゴリナビゲーション) -->
+          <!-- 左側: サイドバー (★data-filter属性を追加) -->
           <aside class="w-full lg:w-1/4 lg:sticky lg:top-32 animate-on-scroll fade-up">
-            
             <div class="mb-10">
               <h3 class="text-lg font-bold text-slate-800 tracking-widest mb-6 flex items-center gap-2">
                 CATEGORY <span class="text-xs text-slate-400 font-normal">ー カテゴリ</span>
@@ -148,52 +144,46 @@
               <!-- カテゴリリスト 1: 施工内容 -->
               <div class="mb-8">
                 <h4 class="font-bold text-slate-700 mb-4">施工内容</h4>
-                <ul class="space-y-3 text-sm text-slate-600 font-medium">
-                  <li class="hover:text-primary transition-colors cursor-pointer before:content-['—'] before:mr-2 before:text-slate-400">すべて</li>
-                  <li class="hover:text-primary transition-colors cursor-pointer before:content-['—'] before:mr-2 before:text-slate-400">新規設置・導入</li>
-                  <li class="hover:text-primary transition-colors cursor-pointer before:content-['—'] before:mr-2 before:text-slate-400">入替・更新工事</li>
-                  <li class="hover:text-primary transition-colors cursor-pointer before:content-['—'] before:mr-2 before:text-slate-400">保守・修理・点検</li>
+                <ul class="space-y-3 text-sm text-slate-600 font-medium filter-group">
+                  <li data-filter="all" class="filter-btn text-primary cursor-pointer before:content-['—'] before:mr-2 before:text-slate-400">すべて</li>
+                  <li data-filter="新規設置・導入" class="filter-btn hover:text-primary transition-colors cursor-pointer before:content-['—'] before:mr-2 before:text-slate-400">新規設置・導入</li>
+                  <li data-filter="入替・更新工事" class="filter-btn hover:text-primary transition-colors cursor-pointer before:content-['—'] before:mr-2 before:text-slate-400">入替・更新工事</li>
+                  <li data-filter="保守・修理・点検" class="filter-btn hover:text-primary transition-colors cursor-pointer before:content-['—'] before:mr-2 before:text-slate-400">保守・修理・点検</li>
                 </ul>
               </div>
 
               <!-- カテゴリリスト 2: 施設種別 -->
               <div>
                 <h4 class="font-bold text-slate-700 mb-4">施設種別</h4>
-                <ul class="space-y-3 text-sm text-slate-600 font-medium">
-                  <li class="hover:text-primary transition-colors cursor-pointer before:content-['—'] before:mr-2 before:text-slate-400">一般住宅・マンション</li>
-                  <li class="hover:text-primary transition-colors cursor-pointer before:content-['—'] before:mr-2 before:text-slate-400">オフィス・商業ビル</li>
-                  <li class="hover:text-primary transition-colors cursor-pointer before:content-['—'] before:mr-2 before:text-slate-400">公共施設・その他</li>
+                <ul class="space-y-3 text-sm text-slate-600 font-medium filter-group">
+                  <li data-filter="一般住宅" class="filter-btn hover:text-primary transition-colors cursor-pointer before:content-['—'] before:mr-2 before:text-slate-400">一般住宅・マンション</li>
+                  <li data-filter="オフィス・商業ビル" class="filter-btn hover:text-primary transition-colors cursor-pointer before:content-['—'] before:mr-2 before:text-slate-400">オフィス・商業ビル</li>
+                  <li data-filter="公共施設・その他" class="filter-btn hover:text-primary transition-colors cursor-pointer before:content-['—'] before:mr-2 before:text-slate-400">公共施設・その他</li>
                 </ul>
               </div>
             </div>
-
           </aside>
 
-          <!-- 右側: 施工事例グリッド (カード形式NG・背景直置き) -->
+          <!-- 右側: 施工事例グリッド -->
           <div class="w-full lg:w-3/4">
-            <!-- 2カラムグリッド -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-16">
+            <div id="works-container" class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-16">
               
-              <!-- Work Item 1 -->
-              <a href="#" class="group block animate-on-scroll fade-up">
-                <!-- 画像 (角丸のみ、シャドウや枠線なし) -->
+              <!-- Work Item 1 (★data-category属性にカテゴリ名を付与) -->
+              <a href="#" class="work-item group block animate-on-scroll fade-up" data-category="入替・更新工事 一般住宅">
                 <div class="relative w-full aspect-[4/3] overflow-hidden rounded-lg bg-slate-200">
                   <img src="https://images.unsplash.com/photo-1574362848149-11496d93a7c7?auto=format&fit=crop&q=80&w=800" alt="施工事例1" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
                 </div>
-                <!-- ソリッドなタグ群 -->
                 <div class="mt-5 flex flex-wrap gap-2">
                   <span class="bg-white border border-slate-300 text-slate-700 text-[11px] font-bold px-3 py-1 rounded-sm">入替・更新工事</span>
                   <span class="bg-white border border-slate-300 text-slate-700 text-[11px] font-bold px-3 py-1 rounded-sm">一般住宅</span>
-                  <span class="bg-white border border-slate-300 text-slate-700 text-[11px] font-bold px-3 py-1 rounded-sm">アメリカン・スタンダード</span>
                 </div>
-                <!-- シンプルで力強いタイトル -->
                 <h3 class="mt-4 text-xl font-bold text-slate-800 group-hover:text-primary transition-colors leading-snug">
                   都内マンション ウォールスルーエアコン入替工事
                 </h3>
               </a>
 
               <!-- Work Item 2 -->
-              <a href="#" class="group block animate-on-scroll fade-up" style="transition-delay: 100ms;">
+              <a href="#" class="work-item group block animate-on-scroll fade-up" data-category="新規設置・導入 オフィス・商業ビル">
                 <div class="relative w-full aspect-[4/3] overflow-hidden rounded-lg bg-slate-200">
                   <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800" alt="施工事例2" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
                 </div>
@@ -207,14 +197,13 @@
               </a>
 
               <!-- Work Item 3 -->
-              <a href="#" class="group block animate-on-scroll fade-up">
+              <a href="#" class="work-item group block animate-on-scroll fade-up" data-category="保守・修理・点検 オフィス・商業ビル">
                 <div class="relative w-full aspect-[4/3] overflow-hidden rounded-lg bg-slate-200">
                   <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=80&w=800" alt="施工事例3" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
                 </div>
                 <div class="mt-5 flex flex-wrap gap-2">
                   <span class="bg-white border border-slate-300 text-slate-700 text-[11px] font-bold px-3 py-1 rounded-sm">保守・修理・点検</span>
                   <span class="bg-white border border-slate-300 text-slate-700 text-[11px] font-bold px-3 py-1 rounded-sm">オフィス・商業ビル</span>
-                  <span class="bg-white border border-slate-300 text-slate-700 text-[11px] font-bold px-3 py-1 rounded-sm">旧GE・GAC社製</span>
                 </div>
                 <h3 class="mt-4 text-xl font-bold text-slate-800 group-hover:text-primary transition-colors leading-snug">
                   輸入空調機（GAC社製） 定期メンテナンス及び部品交換
@@ -222,7 +211,7 @@
               </a>
 
               <!-- Work Item 4 -->
-              <a href="#" class="group block animate-on-scroll fade-up" style="transition-delay: 100ms;">
+              <a href="#" class="work-item group block animate-on-scroll fade-up" data-category="入替・更新工事 一般住宅">
                 <div class="relative w-full aspect-[4/3] overflow-hidden rounded-lg bg-slate-200">
                   <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800" alt="施工事例4" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
                 </div>
@@ -236,7 +225,7 @@
               </a>
               
               <!-- Work Item 5 -->
-              <a href="#" class="group block animate-on-scroll fade-up">
+              <a href="#" class="work-item group block animate-on-scroll fade-up" data-category="保守・修理・点検 公共施設・その他">
                 <div class="relative w-full aspect-[4/3] overflow-hidden rounded-lg bg-slate-200">
                   <img src="https://images.unsplash.com/photo-1545259741-2ea3ebf61fa3?auto=format&fit=crop&q=80&w=800" alt="施工事例5" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
                 </div>
@@ -250,14 +239,13 @@
               </a>
 
               <!-- Work Item 6 -->
-              <a href="#" class="group block animate-on-scroll fade-up" style="transition-delay: 100ms;">
+              <a href="#" class="work-item group block animate-on-scroll fade-up" data-category="新規設置・導入 一般住宅">
                 <div class="relative w-full aspect-[4/3] overflow-hidden rounded-lg bg-slate-200">
                   <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=800" alt="施工事例6" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
                 </div>
                 <div class="mt-5 flex flex-wrap gap-2">
                   <span class="bg-white border border-slate-300 text-slate-700 text-[11px] font-bold px-3 py-1 rounded-sm">新規設置・導入</span>
                   <span class="bg-white border border-slate-300 text-slate-700 text-[11px] font-bold px-3 py-1 rounded-sm">一般住宅</span>
-                  <span class="bg-white border border-slate-300 text-slate-700 text-[11px] font-bold px-3 py-1 rounded-sm">アメリカン・スタンダード</span>
                 </div>
                 <h3 class="mt-4 text-xl font-bold text-slate-800 group-hover:text-primary transition-colors leading-snug">
                   高級輸入住宅 13SEER室外機 全館空調システム導入
@@ -265,28 +253,13 @@
               </a>
 
             </div>
-            
-            <!-- ページネーション (デザインのみ) -->
-            <div class="mt-20 flex justify-center items-center gap-2 animate-on-scroll fade-up">
-              <span class="w-10 h-10 flex items-center justify-center bg-slate-800 text-white font-bold rounded-full text-sm">1</span>
-              <a href="#" class="w-10 h-10 flex items-center justify-center bg-white border border-slate-300 text-slate-600 font-medium rounded-full text-sm hover:border-primary hover:text-primary transition-colors">2</a>
-              <a href="#" class="w-10 h-10 flex items-center justify-center bg-white border border-slate-300 text-slate-600 font-medium rounded-full text-sm hover:border-primary hover:text-primary transition-colors">3</a>
-              <span class="px-2 text-slate-400">...</span>
-              <a href="#" class="w-10 h-10 flex items-center justify-center bg-white border border-slate-300 text-slate-600 hover:border-primary hover:text-primary transition-colors rounded-full">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-              </a>
-            </div>
-
           </div>
         </div>
       </div>
     </section>
-
   </main>
 
-  <!-- ==============================================
-       Footer (共通パーツ)
-  =============================================== -->
+  <!-- Footer -->
   <footer class="bg-slate-900 text-white py-16 relative z-10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-12 border-b border-slate-800 pb-12 mb-8">
@@ -322,28 +295,56 @@
     </div>
   </footer>
 
-  <!-- ==============================================
-       Scripts
-  =============================================== -->
+  <!-- Scripts -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // Intersection Observerによるスクロールアニメーション発火
-      const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.15 
-      };
-
+      // 1. スクロールアニメーション
       const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             entry.target.classList.add('is-visible');
           }
         });
-      }, observerOptions);
-
+      }, { root: null, rootMargin: '0px', threshold: 0.15 });
       document.querySelectorAll('.animate-on-scroll').forEach(el => {
         observer.observe(el);
+      });
+
+      // 2. ★JavaScriptによるカテゴリ絞り込み処理
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const workItems = document.querySelectorAll('.work-item');
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          // サイドバーのアクティブ状態をリセット
+          filterBtns.forEach(b => {
+            b.classList.remove('text-primary');
+          });
+          // クリックされたボタンをアクティブ（青色）にする
+          btn.classList.add('text-primary');
+
+          const filterValue = btn.getAttribute('data-filter');
+
+          // 各事例カードをチェック
+          workItems.forEach(item => {
+            const itemCategories = item.getAttribute('data-category');
+            
+            // "all"が選ばれたか、要素がカテゴリを含んでいる場合
+            if (filterValue === 'all' || itemCategories.includes(filterValue)) {
+              item.classList.remove('hidden-item');
+              // アニメーションのために少し遅延させて表示
+              setTimeout(() => {
+                item.style.display = 'block';
+              }, 50);
+            } else {
+              // 該当しない場合は隠す
+              item.classList.add('hidden-item');
+              setTimeout(() => {
+                item.style.display = 'none';
+              }, 400); // CSSのtransition時間(0.4s)に合わせる
+            }
+          });
+        });
       });
     });
   </script>
